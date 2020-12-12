@@ -4,32 +4,32 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Project_BanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Project_BanHang1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Catalog">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Catalog_Name" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Combo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Combo_Name" Type="text" Nullable="false" />
           <Property Name="Product_List" Type="text" Nullable="false" />
           <Property Name="startDate" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="endDate" Type="varchar" MaxLength="11" Nullable="false" />
-          <Property Name="totalMoney" Type="text" Nullable="false" />
+          <Property Name="totalMoney" Type="int" Nullable="false" />
           <Property Name="discount" Type="varchar" MaxLength="8" Nullable="false" />
-          <Property Name="discountMoney" Type="text" Nullable="false" />
+          <Property Name="discountMoney" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="text" Nullable="false" />
           <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -44,7 +44,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="text" Nullable="false" />
           <Property Name="firstName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -53,23 +53,24 @@
           <Property Name="birthDate" Type="varchar" MaxLength="12" />
           <Property Name="address" Type="text" Nullable="false" />
           <Property Name="joinDate" Type="varchar" MaxLength="11" Nullable="false" />
-          <Property Name="Role_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Role_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Invoice_Name" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="Customer_ID" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Shipper_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Customer_ID" Type="int" Nullable="false" />
+          <Property Name="Shipper_ID" Type="int" />
           <Property Name="totalMoney" Type="text" Nullable="false" />
-          <Property Name="createdDate" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="createdDate" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="customerAddress" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="shipDate" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="shipDate" Type="nvarchar" MaxLength="60" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Project_BanHang1.dbo.InvoiceDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="InvoiceDetail">
           <Key>
             <PropertyRef Name="Invoice_ID" />
@@ -77,46 +78,47 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
             <PropertyRef Name="Amount" />
             <PropertyRef Name="Price" />
           </Key>
-          <Property Name="Invoice_ID" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Product_ID" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Combo_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Invoice_ID" Type="int" Nullable="false" />
+          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Combo_ID" Type="int" />
           <Property Name="Amount" Type="int" Nullable="false" />
-          <Property Name="Price" Type="text" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Product_Name" Type="text" Nullable="false" />
-          <Property Name="Catalog_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Catalog_ID" Type="int" />
           <Property Name="Amount" Type="int" Nullable="false" />
-          <Property Name="Price" Type="text" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Img" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="ProductDetail">
           <Key>
             <PropertyRef Name="Product_ID" />
           </Key>
-          <Property Name="Product_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Product_ID" Type="int" Nullable="false" />
           <Property Name="Product_Detail" Type="nvarchar" MaxLength="650" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Role_Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Storage">
           <Key>
             <PropertyRef Name="Product_ID" />
           </Key>
-          <Property Name="Product_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Product_ID" Type="int" Nullable="false" />
           <Property Name="Amount" Type="int" Nullable="false" />
-          <Property Name="importDate" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="exportDate" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="importDate" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="exportDate" Type="nvarchar" MaxLength="60" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="Project_BanHangModelStoreContainer">
+        <EntityContainer Name="Project_BanHang1ModelStoreContainer">
           <EntitySet Name="Catalog" EntityType="Self.Catalog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Combo" EntityType="Self.Combo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
@@ -140,32 +142,32 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Project_BanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Project_BanHang1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Catalog">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Catalog_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Combo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Combo_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Product_List" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="startDate" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="endDate" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="totalMoney" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="totalMoney" Type="Int32" Nullable="false" />
           <Property Name="discount" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="discountMoney" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="discountMoney" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -180,7 +182,7 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -189,53 +191,55 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
           <Property Name="birthDate" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="joinDate" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Role_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Invoice_Name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Customer_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Shipper_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Shipper_ID" Type="Int32" />
           <Property Name="totalMoney" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="createdDate" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdDate" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="customerAddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="shipDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="shipDate" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Product_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Catalog_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Catalog_ID" Type="Int32" />
           <Property Name="Amount" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ProductDetail">
           <Key>
             <PropertyRef Name="Product_ID" />
           </Key>
-          <Property Name="Product_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
           <Property Name="Product_Detail" Type="String" MaxLength="650" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Role_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Storage">
           <Key>
             <PropertyRef Name="Product_ID" />
           </Key>
-          <Property Name="Product_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Int32" Nullable="false" />
-          <Property Name="importDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="exportDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="importDate" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="exportDate" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="InvoiceDetail">
           <Key>
@@ -244,11 +248,11 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
             <PropertyRef Name="Amount" />
             <PropertyRef Name="Price" />
           </Key>
-          <Property Name="Invoice_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Product_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Combo_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Invoice_ID" Type="Int32" Nullable="false" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Combo_ID" Type="Int32" />
           <Property Name="Amount" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityContainer Name="BanHangContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Catalogs" EntityType="Self.Catalog" />
@@ -267,9 +271,9 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Project_BanHangModelStoreContainer" CdmEntityContainer="BanHangContext">
+        <EntityContainerMapping StorageEntityContainer="Project_BanHang1ModelStoreContainer" CdmEntityContainer="BanHangContext">
           <EntitySetMapping Name="Catalogs">
-            <EntityTypeMapping TypeName="Project_BanHangModel.Catalog">
+            <EntityTypeMapping TypeName="Project_BanHang1Model.Catalog">
               <MappingFragment StoreEntitySet="Catalog">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Catalog_Name" ColumnName="Catalog_Name" />
@@ -277,7 +281,7 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comboes">
-            <EntityTypeMapping TypeName="Project_BanHangModel.Combo">
+            <EntityTypeMapping TypeName="Project_BanHang1Model.Combo">
               <MappingFragment StoreEntitySet="Combo">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Combo_Name" ColumnName="Combo_Name" />
@@ -291,7 +295,7 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="Project_BanHangModel.Customer">
+            <EntityTypeMapping TypeName="Project_BanHang1Model.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -307,7 +311,7 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="Project_BanHangModel.Employee">
+            <EntityTypeMapping TypeName="Project_BanHang1Model.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -323,7 +327,7 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Invoices">
-            <EntityTypeMapping TypeName="Project_BanHangModel.Invoice">
+            <EntityTypeMapping TypeName="Project_BanHang1Model.Invoice">
               <MappingFragment StoreEntitySet="Invoice">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Invoice_Name" ColumnName="Invoice_Name" />
@@ -332,23 +336,25 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
                 <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="customerAddress" ColumnName="customerAddress" />
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="shipDate" ColumnName="shipDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="Project_BanHangModel.Product">
+            <EntityTypeMapping TypeName="Project_BanHang1Model.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
                 <ScalarProperty Name="Catalog_ID" ColumnName="Catalog_ID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductDetails">
-            <EntityTypeMapping TypeName="Project_BanHangModel.ProductDetail">
+            <EntityTypeMapping TypeName="Project_BanHang1Model.ProductDetail">
               <MappingFragment StoreEntitySet="ProductDetail">
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="Product_Detail" ColumnName="Product_Detail" />
@@ -356,15 +362,15 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="Project_BanHangModel.Role">
+            <EntityTypeMapping TypeName="Project_BanHang1Model.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Storages">
-            <EntityTypeMapping TypeName="Project_BanHangModel.Storage">
+            <EntityTypeMapping TypeName="Project_BanHang1Model.Storage">
               <MappingFragment StoreEntitySet="Storage">
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
@@ -374,7 +380,7 @@ warning 6002: The table/view 'Project_BanHang.dbo.InvoiceDetail' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InvoiceDetails">
-            <EntityTypeMapping TypeName="Project_BanHangModel.InvoiceDetail">
+            <EntityTypeMapping TypeName="Project_BanHang1Model.InvoiceDetail">
               <MappingFragment StoreEntitySet="InvoiceDetail">
                 <ScalarProperty Name="Invoice_ID" ColumnName="Invoice_ID" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />

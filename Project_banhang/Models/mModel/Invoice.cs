@@ -14,13 +14,14 @@ namespace Project_banhang.Models.mModel
     
     public partial class Invoice
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Invoice_Name { get; set; }
-        public string Customer_ID { get; set; }
-        public string Shipper_ID { get; set; }
+        public int Customer_ID { get; set; }
+        public Nullable<int> Shipper_ID { get; set; }
         public string totalMoney { get; set; }
         public string createdDate { get; set; }
         public string customerAddress { get; set; }
+        public int status { get; set; }
         public string shipDate { get; set; }
     }
 }

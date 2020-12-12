@@ -1,9 +1,9 @@
 ﻿/*
-CREATE DATABASE Project_BanHang;
-USE Project_BanHang;
+CREATE DATABASE Project_BanHang1;
+USE Project_BanHang1;
 GO
 */
-drop database Project_BanHang
+
 CREATE TABLE [dbo].[Customer]
 (
 	[ID] int NOT NULL PRIMARY KEY,
@@ -89,6 +89,7 @@ CREATE TABLE [dbo].[Invoice]
 	[totalMoney] TEXT NOT NULL,
 	[createdDate]NVARCHAR(60) not null,
 	[customerAddress] NVARCHAR(60) NOT NULL,
+	[status] INT NOT NULL,
 	[shipDate] NVARCHAR(60) not null
 )
 

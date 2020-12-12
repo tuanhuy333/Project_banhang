@@ -14,13 +14,13 @@ namespace Project_banhang.Models.mModel
     
     public partial class Combo
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Combo_Name { get; set; }
         public string Product_List { get; set; }
         public string startDate { get; set; }
         public string endDate { get; set; }
-        public string totalMoney { get; set; }
+        public int totalMoney { get; set; }
         public string discount { get; set; }
-        public string discountMoney { get; set; }
+        public int discountMoney { get; set; }
     }
 }

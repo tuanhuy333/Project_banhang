@@ -14,7 +14,7 @@ namespace Project_banhang.Models.mModel
     
     public partial class Storage
     {
-        public string Product_ID { get; set; }
+        public int Product_ID { get; set; }
         public int Amount { get; set; }
         public string importDate { get; set; }
         public string exportDate { get; set; }

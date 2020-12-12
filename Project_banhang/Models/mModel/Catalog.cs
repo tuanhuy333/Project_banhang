@@ -14,7 +14,7 @@ namespace Project_banhang.Models.mModel
     
     public partial class Catalog
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Catalog_Name { get; set; }
     }
 }

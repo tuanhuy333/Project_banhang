@@ -14,7 +14,7 @@ namespace Project_banhang.Models.mModel
     
     public partial class Employee
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string firstName { get; set; }
@@ -23,6 +23,6 @@ namespace Project_banhang.Models.mModel
         public string birthDate { get; set; }
         public string address { get; set; }
         public string joinDate { get; set; }
-        public string Role_ID { get; set; }
+        public int Role_ID { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Project_banhang.Models.mModel
     
     public partial class Customer
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string firstName { get; set; }

@@ -14,10 +14,10 @@ namespace Project_banhang.Models.mModel
     
     public partial class InvoiceDetail
     {
-        public string Invoice_ID { get; set; }
-        public string Product_ID { get; set; }
-        public string Combo_ID { get; set; }
+        public int Invoice_ID { get; set; }
+        public int Product_ID { get; set; }
+        public Nullable<int> Combo_ID { get; set; }
         public int Amount { get; set; }
-        public string Price { get; set; }
+        public int Price { get; set; }
     }
 }

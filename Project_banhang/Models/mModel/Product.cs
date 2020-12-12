@@ -14,10 +14,11 @@ namespace Project_banhang.Models.mModel
     
     public partial class Product
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Product_Name { get; set; }
-        public string Catalog_ID { get; set; }
+        public Nullable<int> Catalog_ID { get; set; }
         public int Amount { get; set; }
-        public string Price { get; set; }
+        public int Price { get; set; }
+        public string Img { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Project_banhang.Models.mModel
     
     public partial class ProductDetail
     {
-        public string Product_ID { get; set; }
+        public int Product_ID { get; set; }
         public string Product_Detail { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Project_banhang.Models.mModel
     
     public partial class Role
     {
-        public string ID { get; set; }
-        public string Role_Name { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }
