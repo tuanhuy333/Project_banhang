@@ -24,6 +24,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			window.scrollTo(0, 1);
 		}
     </script>
+    <style>
+        a {
+            color: white;
+        }
+        /* CSS link color */
+    </style>
     <!-- //Meta tag Keywords -->
     <!-- Custom-Files -->
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -800,7 +806,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				easingType: 'easeOutQuart'
 			});
 
-		});
+        });
+        $(document).ready(function () {
+            $('.minicarts-submit').click(function () {
+                //var url = '@Url.Action("heckout", "Index")';
+                //window.location.href = url;
+            });
+        });
+
     </script>
     <!-- //smooth-scrolling-of-move-up -->
     <!-- for bootstrap working -->
