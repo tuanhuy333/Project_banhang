@@ -9,5 +9,8 @@ namespace Project_banhang.ViewModels
     public class ProductViewmodel
     {
        public List<Product> products { get; set; }
+
+        public Product product { get; set; }
+        public ProductDetail productDetail { get; set; }
     }
 }

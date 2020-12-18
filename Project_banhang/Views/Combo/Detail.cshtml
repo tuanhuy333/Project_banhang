@@ -1,0 +1,87 @@
+﻿@model Project_banhang.ViewModels.ComboViewModel
+@{
+    ViewBag.Title = "Detail";
+}
+
+<!-- Single Page -->
+<div class="banner-bootom-w3-agileits py-5">
+    <div class="container py-xl-4 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            <span>C</span>hi
+            <span>T</span>iết
+        </h3>
+        <!-- //tittle heading -->
+        <div class="row">
+            <div class="col-lg-5 col-md-8 single-right-left ">
+                <div class="grid images_3_of_2">
+                    <div class="flexslider">
+                        <ul class="slides">
+
+                            <div class="thumb-image">
+                                <img src="~/Content/images/combo.png" data-imagezoom="true" class="img-fluid" alt="">
+                            </div>
+
+
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 single-right-left simpleCart_shelfItem">
+                <h3 class="mb-3">@Model.combo.Combo_Name</h3>
+                <p class="mb-3">
+                    <span class="item_price">@Model.combo.totalMoney</span>
+                    <del class="mx-2 font-weight-light">@Model.combo.discountMoney</del>
+                    <label>@Model.combo.startDate đến @Model.combo.endDate</label>
+                </p>
+
+                <div class="product-single-w3l">
+
+                    <ul>
+                        @foreach (var item in Model.productList)
+                        {
+                            <li class="mb-1">
+                                @item.Product_Name
+                            </li>
+
+                        }
+                       
+                       
+                    </ul>
+
+                </div>
+                <div class="occasion-cart">
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                        <form action="#" method="post">
+                            <fieldset>
+                                
+                              
+                                   
+                               
+                                     <input type="hidden" name="cmd" value="_cart" />
+                                     <input type="hidden" name="add" value="c_@Model.combo.ID" />
+                                     <input type="hidden" name="business" value=" " />
+                                    <input type="hidden" name="item_name" value="@Model.combo.Combo_Name" />
+                                    <input type="hidden" name="amount" value="@Model.combo.totalMoney" />
+                                    <input type="hidden" name="discount_amount" value="@Model.combo.discountMoney" />
+                                    <input type="hidden" name="currency_code" value="VND" />
+                                    <input type="hidden" name="return" value=" " />
+                                    <input type="hidden" name="cancel_return" value=" " />
+                        
+
+                                <input type="submit" name="submit" value="Add to cart" class="button" />
+                                
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Single Page -->
+
+
+

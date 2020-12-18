@@ -1,22 +1,44 @@
-﻿
+﻿@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" />  
+@model PagedList.IPagedList<Project_banhang.Models.mModel.Product>
+
+
 @{
     ViewBag.Title = "Index";
 
 }
-@model   Project_banhang.ViewModels.ProductViewmodel
+
+
+
 
 <!-- top Products -->
 
         <div class="row">
             <!-- product right -->
+            
+
             <div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
                 <div class="side-bar p-sm-4 p-3">
                     <div class="search-hotel border-bottom py-2">
-                        <h3 class="agileits-sear-head mb-3">Brand</h3>
-                        <form action="#" method="post">
-                            <input type="search" placeholder="Search Brand..." name="search" required="">
-                            <input type="submit" value=" ">
-                        </form>
+                        <h3 class="agileits-sear-head mb-3">Search</h3>
+                        @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+                        {
+                            <p>Danh mục 
+                                @Html.DropDownList("ID", (IEnumerable<SelectListItem>)ViewBag.catalogList, "-- All --", new { @class = "form-control" })
+
+
+                            </p>
+                            <p>Tên sản phẩm 
+
+                                 @Html.TextBox("Search_Data", ViewBag.FilterValue as string ,new { style = "width: 100%;" })
+                                 <br />
+                                <center>
+                                   
+                                    <input type="submit" value=" " style="margin-top:20px"/>
+                                      
+                                  </center>
+                            </p>
+                        }
                     </div>
                 </div>
                 </div>
@@ -27,15 +49,16 @@
                         <!-- first section -->
                         <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
                             <div class="row">
-                                @foreach (var item in Model.products)
+                                @foreach (var item in Model)
                                 {
+                                   
                                     <div class="col-md-4 product-men">
                                         <div class="men-pro-item simpleCart_shelfItem">
-                                            <div class="men-thumb-item text-center">
-                                                <img src="images/m1.jpg" alt="">
+                                            <div class="men-thumb-item text-center mt-3">
+                                                <img src="~/Content/images/m3.jpg" alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
-                                                        <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                                        <a href="/Product/Detail?idPro=@item.ID" class="link-product-add-cart">Quick View</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -52,6 +75,7 @@
                                                         <fieldset>
                                                             <input type="hidden" name="cmd" value="_cart" />
                                                             <input type="hidden" name="add" value="@item.ID" />
+
                                                             <input type="hidden" name="business" value="" />
                                                             <input type="hidden" name="item_name" value="@item.Product_Name-@item.Amount" />
                                                             <input type="hidden" name="amount" value="@item.Price" />
@@ -59,6 +83,15 @@
                                                             <input type="hidden" name="currency_code" value="VND" />
                                                             @*<input type="hidden" name="return" value=" " />
                                                             <input type="hidden" name="cancel_return" value=" " />*@
+
+                                                            <input type="hidden" name="business" value=" " />
+                                                            <input type="hidden" name="item_name" value="@item.Product_Name" />
+                                                            <input type="hidden" name="amount" value="@item.Price" />
+                                                           
+                                                            <input type="hidden" name="currency_code" value="VND" />
+                                                            <input type="hidden" name="return" value=" " />
+                                                            <input type="hidden" name="cancel_return" value=" " />
+
                                                             <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                         </fieldset>
                                                     </form>
@@ -67,13 +100,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                   
                                 }
                                
                                
                             </div>
                         </div>
-                        <!-- //first section -->
-                       
+                        <div style="float:right">
+                            <!-- //first section -->
+                            <!-- Thêm mã phân trang -->
+                            <br />
+                            
+                           
+                            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                            <br />
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, ID = ViewBag.catalogList, Filter_Value = ViewBag.FilterValue }))
+                            <!-- Kết thúc -->
+                        </div>
                     </div>
                     <script>
                         console.log(sessionStorage["PPminicarts"]);
