@@ -206,11 +206,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
-
     <Compile Include="Controllers\ComboController.cs" />
-
     <Compile Include="Controllers\HomeBanHangController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -267,18 +265,15 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
+    <Compile Include="ViewModels\InvoiceDetailViewModel.cs" />
     <Compile Include="ViewModels\OrderRequest.cs" />
-
     <Compile Include="ViewModels\ComboViewModel.cs" />
-
     <Compile Include="ViewModels\ProductViewmodel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\creditly.css" />
     <Content Include="Content\css\easy-responsive-tabs.css" />
@@ -556,21 +551,16 @@
     <Content Include="Views\Checkout\checkout.cshtml" />
     <Content Include="Views\Checkout\orderSuccess.cshtml" />
     <Content Include="Views\Checkout\Invoice.cshtml" />
+    <Content Include="Views\Checkout\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Payment\" />
-
     <Content Include="Views\Combo\Detail.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\css\" />
-    <Folder Include="Content\js\" />
-    <Folder Include="Content\webfonts\" />
-    <Folder Include="Mau_giaodien\web\" />
-    <Folder Include="script_SQL\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

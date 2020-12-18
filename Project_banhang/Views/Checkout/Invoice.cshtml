@@ -1,39 +1,118 @@
-﻿
+﻿@model IEnumerable<Project_banhang.Models.mModel.Invoice>
 @{
     ViewBag.Title = "Invoice";
 }
-
-<h2>Your Invoice</h2>
-<table class="timetable_sub" id="myTable">
-    <thead>
+<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+    <span>Đ</span>ơn 
+    <span>H</span>àng của
+    <span>@Session["username"]</span>
+</h3>
+<table class="table">
+    <thead class="thead-dark">
         <tr>
-            <th>SL No.</th>
-            <th>Invoice_Name</th>
-            <th>totalMoney</th>
-            <th>createdDate</th>
-            <th>customerAddress</th>
-            <th>status</th>
-            <th>shipDate</th>
-            <th>Detail</th>
+            <th>Stt</th>
+            <th>Tên đơn hàng</th>
+            <th>Tổng số tiền</th>
+            <th>Tình trạng</th>
+            <th>Ngày tạo</th>
+            <th>Ngày giao hàng</th>
+            <th>Địa chỉ khách hàng</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr class="rem1">
-            <td class="invert">1</td>
-            <td class="invert-image">
-                
-            </td>
-            <td class="invert">
-               
-            </td>
-            <td class="invert">Back Cover</td>
-            <td class="invert">$259</td>
-            <td class="invert">
-                <div class="rem">
-                    <div class="close1"> </div>
-                </div>
-            </td>
-        </tr>
+        @foreach (var item in Model.Select((value, i) => new { i, value }))
+        {
+            var value = item.value;
+            var index = item.i;
+            var stt = index + 1;
+
+            if (@value.status == 0)
+            {
+                <tr class="table-primary">
+                    <td>@stt</td>
+                    <td>@value.Invoice_Name</td>
+                    <td>@value.totalMoney</td>
+
+                    @if (@value.status == 0)
+                    {
+                        <td>Chưa xác nhận</td>
+                    }
+                    @if (@value.status == 1)
+                    {
+                        <td>Đang giao hàng</td>
+                    }
+                    @if (@value.status == 2)
+                    {
+                        <td>Đã giao hàng</td>
+                    }
+
+                    <td>@value.createdDate</td>
+                    <td>@value.shipDate</td>
+                    <td>@value.customerAddress</td>
+                    <td><a href="/Checkout/Detail?id=@value.ID">Chi tiết</a></td>
+
+                </tr>
+            }
+            if (@value.status == 1)
+            {
+                <tr class="table-warning">
+                    <td>@stt</td>
+                    <td>@value.Invoice_Name</td>
+                    <td>@value.totalMoney</td>
+
+                    @if (@value.status == 0)
+                    {
+                        <td>Chưa xác nhận</td>
+                    }
+                    @if (@value.status == 1)
+                    {
+                        <td>Đang giao hàng</td>
+                    }
+                    @if (@value.status == 2)
+                    {
+                        <td>Đã giao hàng</td>
+                    }
+
+                    <td>@value.createdDate</td>
+                    <td>@value.shipDate</td>
+                    <td>@value.customerAddress</td>
+                    <td><a href="/Checkout/Detail">Chi tiết</a></td>
+
+                </tr>
+            }
+            if (@value.status == 2)
+            {
+                <tr class="table-active">
+                    <td>@stt</td>
+                    <td>@value.Invoice_Name</td>
+                    <td>@value.totalMoney</td>
+
+                    @if (@value.status == 0)
+                    {
+                        <td>Chưa xác nhận</td>
+                    }
+                    @if (@value.status == 1)
+                    {
+                        <td>Đang giao hàng</td>
+                    }
+                    @if (@value.status == 2)
+                    {
+                        <td>Đã giao hàng</td>
+                    }
+
+                    <td>@value.createdDate</td>
+                    <td>@value.shipDate</td>
+                    <td>@value.customerAddress</td>
+                    <td><a href="/Checkout/Detail">Chi tiết</a></td>
+
+                </tr>
+            }
+
+        }
+        
+       
+
     </tbody>
 </table>
 

@@ -1,22 +1,29 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+﻿@if (@Session["username"] != null)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
-    }
+   
+
+          <i>Hello @Session["username"] !  </i>
+        <a href="@Url.Action("Invoice","Checkout")" class="text-white">
+            | Your Order
+        </a>
+        <a href="@Url.Action("Logout","Account")" class="text-white">
+            | Log Out 
+        </a>
+
+
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    <li class="text-center border-right text-white">
+        <a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
+            <i class="fas fa-sign-in-alt mr-2"></i> Log In
+        </a>
+
+        </li>
+        <li class="text-center text-white">
+            <a href="#" data-toggle="modal" data-target="#exampleModal2" class="text-white">
+                <i class="fas fa-sign-out-alt mr-2"></i>Register
+            </a>
+        </li>
 }

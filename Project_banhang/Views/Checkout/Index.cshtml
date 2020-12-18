@@ -45,12 +45,12 @@
                 <div class="information-wrapper">
                     <div class="first-row">
                         <div class="controls form-group">
-                            <input class="billing-address-name form-control" type="text" name="name" placeholder="Full Name" id="fullname" required="">
+                            <input class="billing-address-name form-control" type="text" name="name" placeholder="Full Name" id="fullname1" required="">
                         </div>
                         <div class="w3_agileits_card_number_grids">
                             <div class="w3_agileits_card_number_grid_left form-group">
                                 <div class="controls">
-                                    <input type="text" class="form-control" placeholder="Mobile Number" name="number" id="phone" required="">
+                                    <input type="text" class="form-control" placeholder="Mobile Number" name="number" id="phone1" required="">
                                 </div>
                             </div>
                             <div class="w3_agileits_card_number_grid_right form-group">
@@ -78,6 +78,7 @@
         console.log(cart_item.value.items);
         var data = cart_item.value.items;
         for (var i = 0; i < data.length; i++) {
+            var gia = parseInt(data[i].amount) - parseInt(data[i].discount_amount);
             console.log(i);
             $("#myTable > tbody").append("<tr class='rem" + i + "'>" +
                 "<td class= 'invert' > " + i + "</td >" +
@@ -98,7 +99,7 @@
                 "</div>" +
                 "</td>" +
                 "<td class='invert' id='tensp'>" + data[i].item_name + "</td>" +
-                "<td class='invert'>" + data[i].amount + "</td>" +
+                "<td class='invert'>" + gia + "</td>" +
                 "<td class='invert'>" +
                 "<div class='rem'>" +
                 "<div class='close1' id='remove" + i + "'> </div>" +
@@ -210,62 +211,68 @@
         }
     }
         $('#btnorder').click(function () {
-            var fullname = $('#fullname').val();
-            var phone = $('#phone').val();
+            var fullname = $('#fullname1').val();
+            var phone = $('#phone1').val();
             var address = $('#address').val();
-        //validate form input
-        //checklogin
-            var isLogin = $('#isLogin').val();
-            if (isLogin == 0) {
-                //check empty cart
-                debugger;
-                var checkcart = checkEmptyCart();
-                if (checkcart == false) {
-                    //request to server using ajax
-                    var cart = decodeURIComponent(localStorage.getItem('PPminicarts'));
-                    debugger;
-                    var data = {
-                        fullname: fullname,
-                        phone: phone,
-                        address: address,
-                        cart:cart
-                    };
-                    $.ajax({
-                        url: "/checkout/order",
-                        type: "POST",
-                        data: JSON.stringify(data),
-                        dataType: "json",
-                        contentType: "application/json",
-                        success: function (response) {
-                            if (response.Success) {
-                                window.location.href ="checkout/orderSuccess"
-                                //clear cart
-                            }
-                            else {
-                                alert(response.message);
-                            }
-                        },
-                        error: function () {
-                            console.log('error');
-                        }
-                    });
-
-                } else {
-                    alert("cart empty");
-                }             
+            debugger;
+            //validate form input
+            if (fullname == '' || phone == '' || address == '') {
+                alert("input required");
             } else {
-                alert("please login");
+                //checklogin
+                var isLogin = $('#isLogin').val();
+                if (isLogin == 0) {
+                    //check empty cart
+                    debugger;
+                    var checkcart = checkEmptyCart();
+                    if (checkcart == false) {
+                        //request to server using ajax
+                        var cart = decodeURIComponent(localStorage.getItem('PPminicarts'));
+                        debugger;
+                        var data = {
+                            fullname: fullname,
+                            phone: phone,
+                            address: address,
+                            cart: cart
+                        };
+                        $.ajax({
+                            url: "/checkout/order",
+                            type: "POST",
+                            data: JSON.stringify(data),
+                            dataType: "json",
+                            contentType: "application/json",
+                            success: function (response) {
+                                if (response.Success) {
+                                    window.location.href = "checkout/orderSuccess"
+                                    //clear cart
+                                    localStorage.clear();
+                                }
+                                else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function () {
+                                console.log('error');
+                            }
+                        });
+
+                    } else {
+                        alert("cart empty");
+                    }
+                } else {
+                    alert("please login");
+                }
+
             }
 
-        
-
 
 
 
 
 
     });
-    });
+        });
+    
 
 
 </script>

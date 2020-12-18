@@ -1,0 +1,80 @@
+﻿@model  Project_banhang.ViewModels.InvoiceDetailViewModel
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+    
+    <span>Đ</span>ơn
+    <span>H</span>àng ngày
+    <span>@Model.createdDate</span>
+</h3>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Stt</th>
+            <th>Hình ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Số tiền</th>
+            <th>Loại</th>
+            <th>Giảm giá</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <!--show combo-->
+        @{ 
+            var a = 1;
+            foreach (var item in @Model.comboList.Select((value, i) => new { i, value }))
+            {
+                var value = item.value;
+                var index = item.i;
+                var stt = index + 1;
+
+                <tr class="table-danger">
+                    <td>@a</td>
+                    <td><center><img with="40px" height="60px" src="~/Content/images/combo.png" /></center></td>
+                    <td>@value.Combo_Name</td>
+                    <td>@value.totalMoney</td>
+                    <td>Combo</td>
+                    <td>@value.discountMoney</td>
+                    <td>@value.startDate</td>
+                    <td>@value.endDate</td>
+
+                </tr>
+                a++;
+            }
+        <!--show sp-->
+            foreach (var item in @Model.productList.Select((value, i) => new { i, value }))
+            {
+                var value = item.value;
+                var index = item.i;
+                var stt = index + 1;
+
+                <tr class="table-light">
+                    <td>@a</td>
+                    <td><center><img with="40px" height="80px" src="~/Content/images/k1.jpg" /></center></td>
+                    
+                    <td>@value.Product_Name</td>
+                    <td>@value.Price</td>
+                    <td>Sản phẩm</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                   
+
+                </tr>
+                a++;
+
+            }
+
+
+            }
+
+
+    </tbody>
+</table>
+
