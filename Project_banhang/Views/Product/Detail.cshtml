@@ -1,0 +1,71 @@
+﻿@model  Project_banhang.ViewModels.ProductViewmodel
+@{
+    ViewBag.Title = "Detail";
+}
+
+<!-- Single Page -->
+<div class="banner-bootom-w3-agileits py-5">
+    <div class="container py-xl-4 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            <span>C</span>hi
+            <span>T</span>iết
+        </h3>
+        <!-- //tittle heading -->
+        <div class="row">
+            <div class="col-lg-5 col-md-8 single-right-left ">
+                <div class="grid images_3_of_2">
+                    <div class="flexslider">
+                        <ul class="slides">
+
+                            <div class="thumb-image">
+                                <img src="~/Content/images/si3.jpg" data-imagezoom="true" class="img-fluid" alt="">
+                            </div>
+
+
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 single-right-left simpleCart_shelfItem">
+                <h3 class="mb-3">@Model.product.Product_Name</h3>
+                <p class="mb-3">
+                    <span class="item_price">@Model.product.Price</span>
+                   
+                    <label>Free delivery</label>
+                </p>
+                <div class="single-infoagile">
+                   
+                   
+                </div>
+                <div class="product-single-w3l">
+                     @Model.productDetail.Product_Detail
+                    <p class="my-sm-4 my-3">
+                        <i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
+                    </p>
+                </div>
+                <div class="occasion-cart">
+                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                        <form action="#" method="post">
+                            <fieldset>
+                                <input type="hidden" name="cmd" value="_cart" />
+                                <input type="hidden" name="add" value="@Model.product.ID" />
+                                <input type="hidden" name="business" value=" " />
+                                <input type="hidden" name="item_name" value="@Model.product.Product_Name" />
+                                <input type="hidden" name="amount" value="@Model.product.Price" />
+                                <input type="hidden" name="discount_amount" value="" />
+                                <input type="hidden" name="currency_code" value="VND" />
+                                <input type="hidden" name="return" value=" " />
+                                <input type="hidden" name="cancel_return" value=" " />
+                                <input type="submit" name="submit" value="Add to cart" class="button" />
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Single Page -->
