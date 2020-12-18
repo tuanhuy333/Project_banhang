@@ -67,14 +67,23 @@
                                                     <a href="single.html">@item.Product_Name</a>
                                                 </h4>
                                                 <div class="info-product-price my-2">
-                                                    <span class="item_price">@item.Price</span>
-                                                    <del>$280.00</del>
-                                                </div>
+                                                    <span class="item_price">@item.Price VND</span>
+@*                                                    <del>$280.00</del>
+*@                                                </div>
                                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                                     <form action="#" method="post">
                                                         <fieldset>
                                                             <input type="hidden" name="cmd" value="_cart" />
                                                             <input type="hidden" name="add" value="@item.ID" />
+
+                                                            <input type="hidden" name="business" value="" />
+                                                            <input type="hidden" name="item_name" value="@item.Product_Name-@item.Amount" />
+                                                            <input type="hidden" name="amount" value="@item.Price" />
+                                                           
+                                                            <input type="hidden" name="currency_code" value="VND" />
+                                                            @*<input type="hidden" name="return" value=" " />
+                                                            <input type="hidden" name="cancel_return" value=" " />*@
+
                                                             <input type="hidden" name="business" value=" " />
                                                             <input type="hidden" name="item_name" value="@item.Product_Name" />
                                                             <input type="hidden" name="amount" value="@item.Price" />
@@ -82,6 +91,7 @@
                                                             <input type="hidden" name="currency_code" value="VND" />
                                                             <input type="hidden" name="return" value=" " />
                                                             <input type="hidden" name="cancel_return" value=" " />
+
                                                             <input type="submit" name="submit" value="Add to cart" class="button btn" />
                                                         </fieldset>
                                                     </form>
@@ -108,6 +118,10 @@
                             <!-- Kết thúc -->
                         </div>
                     </div>
+                    <script>
+                        console.log(sessionStorage["PPminicarts"]);
+
+                    </script>
                 </div>
                 <!-- //product left -->
 

@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -205,8 +206,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+
+    <Compile Include="Controllers\CheckoutController.cs" />
+
     <Compile Include="Controllers\ComboController.cs" />
+
     <Compile Include="Controllers\HomeBanHangController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,18 +267,212 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+
+    <Compile Include="ViewModels\CheckoutViewModel.cs" />
+    <Compile Include="ViewModels\OrderRequest.cs" />
+
     <Compile Include="ViewModels\ComboViewModel.cs" />
+
     <Compile Include="ViewModels\ProductViewmodel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\creditly.css" />
+    <Content Include="Content\css\easy-responsive-tabs.css" />
+    <Content Include="Content\css\flexslider.css" />
+    <Content Include="Content\css\fontawesome-all.css" />
+    <Content Include="Content\css\menu.css" />
+    <Content Include="Content\css\popuo-box.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\images\a.jpg" />
+    <Content Include="Content\images\a3.jpg" />
+    <Content Include="Content\images\a4.jpg" />
+    <Content Include="Content\images\ab.jpg" />
+    <Content Include="Content\images\arrow.png" />
+    <Content Include="Content\images\b1.jpg" />
+    <Content Include="Content\images\b2.jpg" />
+    <Content Include="Content\images\b3.jpg" />
+    <Content Include="Content\images\b4.jpg" />
+    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\bg2.jpg" />
+    <Content Include="Content\images\close_1.png" />
+    <Content Include="Content\images\h.jpg" />
+    <Content Include="Content\images\image1.png" />
+    <Content Include="Content\images\k1.jpg" />
+    <Content Include="Content\images\k2.jpg" />
+    <Content Include="Content\images\k3.jpg" />
+    <Content Include="Content\images\logo2.png" />
+    <Content Include="Content\images\m1.jpg" />
+    <Content Include="Content\images\m2.jpg" />
+    <Content Include="Content\images\m3.jpg" />
+    <Content Include="Content\images\m4.jpg" />
+    <Content Include="Content\images\m5.jpg" />
+    <Content Include="Content\images\m6.jpg" />
+    <Content Include="Content\images\m7.jpg" />
+    <Content Include="Content\images\m8.jpg" />
+    <Content Include="Content\images\m9.jpg" />
+    <Content Include="Content\images\mk1.jpg" />
+    <Content Include="Content\images\mk2.jpg" />
+    <Content Include="Content\images\mk3.jpg" />
+    <Content Include="Content\images\mk4.jpg" />
+    <Content Include="Content\images\mk5.jpg" />
+    <Content Include="Content\images\mk6.jpg" />
+    <Content Include="Content\images\mk7.jpg" />
+    <Content Include="Content\images\mk8.jpg" />
+    <Content Include="Content\images\mk9.jpg" />
+    <Content Include="Content\images\mm1.jpg" />
+    <Content Include="Content\images\mm2.jpg" />
+    <Content Include="Content\images\mm3.jpg" />
+    <Content Include="Content\images\mm4.jpg" />
+    <Content Include="Content\images\mm5.jpg" />
+    <Content Include="Content\images\mm6.jpg" />
+    <Content Include="Content\images\move-up.png" />
+    <Content Include="Content\images\off1.png" />
+    <Content Include="Content\images\off2.png" />
+    <Content Include="Content\images\pay1.png" />
+    <Content Include="Content\images\pay2.png" />
+    <Content Include="Content\images\pay3.png" />
+    <Content Include="Content\images\pay4.png" />
+    <Content Include="Content\images\pay5.png" />
+    <Content Include="Content\images\pay6.png" />
+    <Content Include="Content\images\pay7.png" />
+    <Content Include="Content\images\pay8.png" />
+    <Content Include="Content\images\pay9.png" />
+    <Content Include="Content\images\paypal.png" />
+    <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\si1.jpg" />
+    <Content Include="Content\images\si2.jpg" />
+    <Content Include="Content\images\si3.jpg" />
+    <Content Include="Content\images\sii1.jpg" />
+    <Content Include="Content\images\sii2.jpg" />
+    <Content Include="Content\images\sii3.jpg" />
+    <Content Include="Content\images\user.jpg" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\creditly.js" />
+    <Content Include="Content\js\creditly2.js" />
+    <Content Include="Content\js\easing.js" />
+    <Content Include="Content\js\easyResponsiveTabs.js" />
+    <Content Include="Content\js\imagezoom.js" />
+    <Content Include="Content\js\jquery-2.2.3.min.js" />
+    <Content Include="Content\js\jquery.flexslider.js" />
+    <Content Include="Content\js\jquery.magnific-popup.js" />
+    <Content Include="Content\js\minicart.js" />
+    <Content Include="Content\js\move-top.js" />
+    <Content Include="Content\js\scroll.js" />
+    <Content Include="Content\js\SmoothScroll.min.js" />
+    <Content Include="Content\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\webfonts\fa-solid-900.svg" />
     <Content Include="Content\images\combo.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Mau_giaodien\web\about.html" />
+    <Content Include="Mau_giaodien\web\checkout.html" />
+    <Content Include="Mau_giaodien\web\contact.html" />
+    <Content Include="Mau_giaodien\web\css\bootstrap.css" />
+    <Content Include="Mau_giaodien\web\css\creditly.css" />
+    <Content Include="Mau_giaodien\web\css\easy-responsive-tabs.css" />
+    <Content Include="Mau_giaodien\web\css\flexslider.css" />
+    <Content Include="Mau_giaodien\web\css\fontawesome-all.css" />
+    <Content Include="Mau_giaodien\web\css\menu.css" />
+    <Content Include="Mau_giaodien\web\css\popuo-box.css" />
+    <Content Include="Mau_giaodien\web\css\style.css" />
+    <Content Include="Mau_giaodien\web\faqs.html" />
+    <Content Include="Mau_giaodien\web\help.html" />
+    <Content Include="Mau_giaodien\web\images\a.jpg" />
+    <Content Include="Mau_giaodien\web\images\a3.jpg" />
+    <Content Include="Mau_giaodien\web\images\a4.jpg" />
+    <Content Include="Mau_giaodien\web\images\ab.jpg" />
+    <Content Include="Mau_giaodien\web\images\arrow.png" />
+    <Content Include="Mau_giaodien\web\images\b1.jpg" />
+    <Content Include="Mau_giaodien\web\images\b2.jpg" />
+    <Content Include="Mau_giaodien\web\images\b3.jpg" />
+    <Content Include="Mau_giaodien\web\images\b4.jpg" />
+    <Content Include="Mau_giaodien\web\images\bg.jpg" />
+    <Content Include="Mau_giaodien\web\images\bg2.jpg" />
+    <Content Include="Mau_giaodien\web\images\close_1.png" />
+    <Content Include="Mau_giaodien\web\images\h.jpg" />
+    <Content Include="Mau_giaodien\web\images\image1.png" />
+    <Content Include="Mau_giaodien\web\images\k1.jpg" />
+    <Content Include="Mau_giaodien\web\images\k2.jpg" />
+    <Content Include="Mau_giaodien\web\images\k3.jpg" />
+    <Content Include="Mau_giaodien\web\images\logo2.png" />
+    <Content Include="Mau_giaodien\web\images\m1.jpg" />
+    <Content Include="Mau_giaodien\web\images\m2.jpg" />
+    <Content Include="Mau_giaodien\web\images\m3.jpg" />
+    <Content Include="Mau_giaodien\web\images\m4.jpg" />
+    <Content Include="Mau_giaodien\web\images\m5.jpg" />
+    <Content Include="Mau_giaodien\web\images\m6.jpg" />
+    <Content Include="Mau_giaodien\web\images\m7.jpg" />
+    <Content Include="Mau_giaodien\web\images\m8.jpg" />
+    <Content Include="Mau_giaodien\web\images\m9.jpg" />
+    <Content Include="Mau_giaodien\web\images\mk1.jpg" />
+    <Content Include="Mau_giaodien\web\images\mk2.jpg" />
+    <Content Include="Mau_giaodien\web\images\mk3.jpg" />
+    <Content Include="Mau_giaodien\web\images\mk4.jpg" />
+    <Content Include="Mau_giaodien\web\images\mk5.jpg" />
+    <Content Include="Mau_giaodien\web\images\mk6.jpg" />
+    <Content Include="Mau_giaodien\web\images\mk7.jpg" />
+    <Content Include="Mau_giaodien\web\images\mk8.jpg" />
+    <Content Include="Mau_giaodien\web\images\mk9.jpg" />
+    <Content Include="Mau_giaodien\web\images\mm1.jpg" />
+    <Content Include="Mau_giaodien\web\images\mm2.jpg" />
+    <Content Include="Mau_giaodien\web\images\mm3.jpg" />
+    <Content Include="Mau_giaodien\web\images\mm4.jpg" />
+    <Content Include="Mau_giaodien\web\images\mm5.jpg" />
+    <Content Include="Mau_giaodien\web\images\mm6.jpg" />
+    <Content Include="Mau_giaodien\web\images\move-up.png" />
+    <Content Include="Mau_giaodien\web\images\off1.png" />
+    <Content Include="Mau_giaodien\web\images\off2.png" />
+    <Content Include="Mau_giaodien\web\images\pay1.png" />
+    <Content Include="Mau_giaodien\web\images\pay2.png" />
+    <Content Include="Mau_giaodien\web\images\pay3.png" />
+    <Content Include="Mau_giaodien\web\images\pay4.png" />
+    <Content Include="Mau_giaodien\web\images\pay5.png" />
+    <Content Include="Mau_giaodien\web\images\pay6.png" />
+    <Content Include="Mau_giaodien\web\images\pay7.png" />
+    <Content Include="Mau_giaodien\web\images\pay8.png" />
+    <Content Include="Mau_giaodien\web\images\pay9.png" />
+    <Content Include="Mau_giaodien\web\images\paypal.png" />
+    <Content Include="Mau_giaodien\web\images\search.png" />
+    <Content Include="Mau_giaodien\web\images\si1.jpg" />
+    <Content Include="Mau_giaodien\web\images\si2.jpg" />
+    <Content Include="Mau_giaodien\web\images\si3.jpg" />
+    <Content Include="Mau_giaodien\web\images\sii1.jpg" />
+    <Content Include="Mau_giaodien\web\images\sii2.jpg" />
+    <Content Include="Mau_giaodien\web\images\sii3.jpg" />
+    <Content Include="Mau_giaodien\web\images\user.jpg" />
+    <Content Include="Mau_giaodien\web\index.html" />
+    <Content Include="Mau_giaodien\web\js\bootstrap.js" />
+    <Content Include="Mau_giaodien\web\js\creditly.js" />
+    <Content Include="Mau_giaodien\web\js\creditly2.js" />
+    <Content Include="Mau_giaodien\web\js\easing.js" />
+    <Content Include="Mau_giaodien\web\js\easyResponsiveTabs.js" />
+    <Content Include="Mau_giaodien\web\js\imagezoom.js" />
+    <Content Include="Mau_giaodien\web\js\jquery-2.2.3.min.js" />
+    <Content Include="Mau_giaodien\web\js\jquery.flexslider.js" />
+    <Content Include="Mau_giaodien\web\js\jquery.magnific-popup.js" />
+    <Content Include="Mau_giaodien\web\js\minicart.js" />
+    <Content Include="Mau_giaodien\web\js\move-top.js" />
+    <Content Include="Mau_giaodien\web\js\scroll.js" />
+    <Content Include="Mau_giaodien\web\js\SmoothScroll.min.js" />
+    <Content Include="Mau_giaodien\web\payment.html" />
+    <Content Include="Mau_giaodien\web\privacy.html" />
+    <Content Include="Mau_giaodien\web\product.html" />
+    <Content Include="Mau_giaodien\web\product2.html" />
+    <Content Include="Mau_giaodien\web\single.html" />
+    <Content Include="Mau_giaodien\web\single2.html" />
+    <Content Include="Mau_giaodien\web\terms.html" />
+    <Content Include="Mau_giaodien\web\w3layouts-License.txt" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-brands-400.svg" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-regular-400.svg" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-solid-900.svg" />
     <Content Include="Models\mModel\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -297,6 +497,32 @@
     <Content Include="Models\mModel\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Mau_giaodien\web\images\Thumbs.db" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-brands-400.eot" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-brands-400.ttf" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-brands-400.woff" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-brands-400.woff2" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-regular-400.eot" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-regular-400.ttf" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-regular-400.woff" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-regular-400.woff2" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-solid-900.eot" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-solid-900.ttf" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-solid-900.woff" />
+    <Content Include="Mau_giaodien\web\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\images\Thumbs.db" />
+    <Content Include="Content\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\webfonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -309,6 +535,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="script_SQL\Project_BanHang.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -325,6 +552,15 @@
     <Content Include="Views\HomeBanHang\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\HomeBanHang\_banner.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Checkout\checkout.cshtml" />
+    <Content Include="Views\Checkout\orderSuccess.cshtml" />
+    <Content Include="Views\Checkout\Invoice.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Payment\" />
+
     <Content Include="Views\Combo\Detail.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
   </ItemGroup>

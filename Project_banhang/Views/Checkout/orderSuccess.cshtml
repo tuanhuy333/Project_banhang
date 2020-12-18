@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "orderSuccess";
+}
+
+<h2> Order success</h2>
+<br />
+<button class="submit check_out btn" id="continuousshopping">continuous shopping</button>
+<script src="~/Content/js/jquery-2.2.3.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#continuousshopping').click(function () {
+            window.location.href = "product";
+        });
+    });
+</script>

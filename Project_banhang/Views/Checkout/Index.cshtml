@@ -1,0 +1,356 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model  Project_banhang.ViewModels.CheckoutViewModel
+
+<!-- tittle heading -->
+<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+    <span>C</span>heckout
+</h3>
+<!-- //tittle heading -->
+<div class="checkout-right">
+    <h4 class="mb-sm-4 mb-3">
+        Your shopping cart:
+    </h4>
+    <button class="submit check_out btn" id="updatecart" style="float:right;">Update your cart</button>
+    <br />
+    <br />
+    <br />
+    <div class="table-responsive">
+
+        <table class="timetable_sub" id="myTable">
+            <thead>
+                <tr>
+                    <th>SL No.</th>
+                    <th>Product</th>
+                    <th>Code</th>
+                    <th>Quality</th>
+                    <th>Product Name</th>
+
+                    <th>Price</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="checkout-left">
+    <div class="address_form_agile mt-sm-5 mt-4">
+        <h4 class="mb-sm-4 mb-3">Add a new Details</h4>
+        <form action="" method="post" class="creditly-card-form agileinfo_form">
+            <input type="hidden" id="isLogin" value="@Model.isLogin" />
+            <div class="creditly-wrapper wthree, w3_agileits_wrapper">
+                <div class="information-wrapper">
+                    <div class="first-row">
+                        <div class="controls form-group">
+                            <input class="billing-address-name form-control" type="text" name="name" placeholder="Full Name" id="fullname" required="">
+                        </div>
+                        <div class="w3_agileits_card_number_grids">
+                            <div class="w3_agileits_card_number_grid_left form-group">
+                                <div class="controls">
+                                    <input type="text" class="form-control" placeholder="Mobile Number" name="number" id="phone" required="">
+                                </div>
+                            </div>
+                            <div class="w3_agileits_card_number_grid_right form-group">
+                                <div class="controls">
+                                    <input type="text" class="form-control" placeholder="Address" name="landmark" id="address" required="">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="submit check_out btn" id="btnorder">Order</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script src="~/Content/js/jquery-2.2.3.min.js"></script>
+<!-- //jquery -->
+<script>
+
+    $(document).ready(function () {
+
+        var cart_item = JSON.parse(decodeURIComponent(localStorage.getItem('PPminicarts')));
+        console.log(cart_item.value.items);
+        var data = cart_item.value.items;
+        for (var i = 0; i < data.length; i++) {
+            console.log(i);
+            $("#myTable > tbody").append("<tr class='rem" + i + "'>" +
+                "<td class= 'invert' > " + i + "</td >" +
+                "<td class='invert-image'>" +
+                "<a href='single.html'>" +
+                "<img src='images/a.jpg' class='img-responsive'>" +
+                "</a>" +
+                "</td>" +
+                "<td class='invert' id='code'>" + data[i].add + "</td>" +
+                "<td class='invert'>" +
+                "<div class='quantity'>" +
+                "<div class='quantity-select'>" +
+                "<div class='entry value-minus'>&nbsp;</div>" +
+                "<div class='entry value' id='soluong'>" + data[i].quantity +
+                "</div>" +
+                "<div class='entry value-plus active'>&nbsp;</div>" +
+                "</div>" +
+                "</div>" +
+                "</td>" +
+                "<td class='invert' id='tensp'>" + data[i].item_name + "</td>" +
+                "<td class='invert'>" + data[i].amount + "</td>" +
+                "<td class='invert'>" +
+                "<div class='rem'>" +
+                "<div class='close1' id='remove" + i + "'> </div>" +
+                "</div>" +
+                "</td>" +
+                " </tr>");
+
+        }
+    });
+
+</script>
+
+<!-- quantity -->
+<script>
+    $(document).ready(function () {
+    $('.value-plus').on('click', function () {
+        var divUpd = $(this).parent().find('.value'),
+            newVal = parseInt(divUpd.text(), 10) + 1;
+        divUpd.id = "sl";
+        divUpd.text(newVal);
+    });
+
+    $('.value-minus').on('click', function () {
+        var divUpd = $(this).parent().find('.value'),
+            newVal = parseInt(divUpd.text(), 10) - 1;
+        divUpd.id = "sl";
+        if (newVal >= 1) divUpd.text(newVal);
+
+    });
+    });
+    $(document).ready(function (c) {
+        $('#updatecart').on('click', function (c) {
+            $('table > tbody > tr').each(function (index, tr) {
+                for (var i = 0; i < tr.length; i++) {
+                    console.log(tr[i]);
+                }
+                var a = tr.getElementsByTagName("td");
+               a[1].value;
+            });
+            var elementsten = document.querySelectorAll('[id=tensp]');
+            var elementssl = document.querySelectorAll('[id=soluong]');
+            var elementscode = document.querySelectorAll('[id=code]');
+
+            var cart_update = [];
+            for (var i = 0; i < elementsten.length; i++) {
+                var temp = elementsten[i].innerHTML;
+                var temp2 = elementssl[i].innerHTML;
+                var temp3 = elementscode[i].innerHTML;
+
+                var singleObj = {};
+                singleObj.name = temp;
+                singleObj.sl = temp2;
+                singleObj.code = temp3;
+                cart_update.push(singleObj);
+            }
+            updatecart(cart_update);
+            @*if (cart_update.length > 0) {
+            var data = { data: cart_update };
+            $.ajax({
+                url: "/checkout/checkSoLuong",
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "json",
+                 contentType: "application/json",
+                success: function (response) {
+                    if (response.Success) {
+                        console.log("ok");
+                    }
+                    else {
+                        console.log("error");
+                    }
+                },
+                error: function () {
+                    console.log('error');
+                }
+            });*@
+            //}
+
+            function updatecart(cartupdate) {
+                var oldcart = JSON.parse(decodeURIComponent(localStorage.getItem('PPminicarts')));
+                var items = oldcart.value.items;
+                var newcart = [];
+                var count=0
+                for (var i = 0; i < items.length; i++) {
+                    for (var j = 0; j < cartupdate.length; j++) {
+                        if (items[i].add == cartupdate[j].code) {
+                            items[i].quantity = cartupdate[j].sl;
+                            newcart[count] = items[i];
+                            count++;
+                        }
+                    }
+                }
+                oldcart.value.items = newcart;
+                window.localStorage.clear;
+                window.localStorage.setItem("PPminicarts", encodeURIComponent(JSON.stringify(oldcart)));
+                location.reload();
+            }
+        });
+    });
+    $(document).ready(function () {
+
+    function checkEmptyCart() {
+        var oldcart = JSON.parse(decodeURIComponent(localStorage.getItem('PPminicarts')));
+        var items = oldcart.value.items;
+        if (items.length == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+        $('#btnorder').click(function () {
+            var fullname = $('#fullname').val();
+            var phone = $('#phone').val();
+            var address = $('#address').val();
+        //validate form input
+        //checklogin
+            var isLogin = $('#isLogin').val();
+            if (isLogin == 0) {
+                //check empty cart
+                debugger;
+                var checkcart = checkEmptyCart();
+                if (checkcart == false) {
+                    //request to server using ajax
+                    var cart = decodeURIComponent(localStorage.getItem('PPminicarts'));
+                    debugger;
+                    var data = {
+                        fullname: fullname,
+                        phone: phone,
+                        address: address,
+                        cart:cart
+                    };
+                    $.ajax({
+                        url: "/checkout/order",
+                        type: "POST",
+                        data: JSON.stringify(data),
+                        dataType: "json",
+                        contentType: "application/json",
+                        success: function (response) {
+                            if (response.Success) {
+                                window.location.href ="checkout/orderSuccess"
+                                //clear cart
+                            }
+                            else {
+                                alert(response.message);
+                            }
+                        },
+                        error: function () {
+                            console.log('error');
+                        }
+                    });
+
+                } else {
+                    alert("cart empty");
+                }             
+            } else {
+                alert("please login");
+            }
+
+        
+
+
+
+
+
+
+    });
+    });
+
+
+</script>
+<!--quantity-->
+<script>
+    $(document).ready(function (c) {
+        $('#remove0').on('click', function (c) {
+            $('.rem0').fadeOut('slow', function (c) {
+                $('.rem0').remove();
+            });
+        });
+    });
+    $(document).ready(function (c) {
+        $('#remove1').on('click', function (c) {
+            $('.rem1').fadeOut('slow', function (c) {
+                $('.rem1').remove();
+            });
+        });
+    });
+    $(document).ready(function (c) {
+        $('#remove2').on('click', function (c) {
+            $('.rem2').fadeOut('slow', function (c) {
+                $('.rem2').remove();
+            });
+        });
+    });
+    $(document).ready(function (c) {
+        $('#remove3').on('click', function (c) {
+            $('.rem3').fadeOut('slow', function (c) {
+                $('.rem3').remove();
+            });
+        });
+    });
+    $(document).ready(function (c) {
+        $('#remove4').on('click', function (c) {
+            $('.rem4').fadeOut('slow', function (c) {
+                $('.rem4').remove();
+            });
+        });
+    });
+    $(document).ready(function (c) {
+        $('#remove5').on('click', function (c) {
+            $('.rem5').fadeOut('slow', function (c) {
+                $('.rem5').remove();
+            });
+        });
+    });
+    $(document).ready(function (c) {
+        $('#remove6').on('click', function (c) {
+            $('.rem6').fadeOut('slow', function (c) {
+                $('.rem6').remove();
+            });
+        });
+    });
+    $(document).ready(function (c) {
+        $('#close7').on('click', function (c) {
+            $('.rem7').fadeOut('slow', function (c) {
+                $('.rem7').remove();
+            });
+        });
+    });
+    $(document).ready(function (c) {
+        $('#remove8').on('click', function (c) {
+            $('.rem8').fadeOut('slow', function (c) {
+                $('.rem8').remove();
+            });
+        });
+    });
+    $(document).ready(function (c) {
+        $('#remove9').on('click', function (c) {
+            $('.rem9').fadeOut('slow', function (c) {
+                $('.rem9').remove();
+            });
+        });
+    });
+    $(document).ready(function (c) {
+        $('#remove10').on('click', function (c) {
+            $('.rem10').fadeOut('slow', function (c) {
+                $('.rem10').remove();
+            });
+        });
+    });
+
+</script>
+
+
+
+
